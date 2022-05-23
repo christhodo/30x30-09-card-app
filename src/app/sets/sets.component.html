@@ -1,0 +1,78 @@
+<div class="courses-containers">
+  <div class="courses-list">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> Set List </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <!-- COURSES LIST -->
+        <mat-list>
+          <mat-list-item *ngFor="let set of sets" (click)="selectSet(set)">
+            <h3 matLine>{{ set.name | titlecase }}</h3>
+            <p matLine>{{ set.year }}</p>
+            <button mat-icon-button color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="course-details">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> Select Set </mat-card-title>
+      </mat-card-header>
+      <form #form="ngForm" (submit)="saveSet(selectedSet)">
+        <mat-card-content>
+          <!-- COURSE FORM -->
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              placeholder="Name"
+              [(ngModel)]="selectedSet.name"
+              name="name"
+            />
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              placeholder="Inserts"
+              [(ngModel)]="selectedSet.inserts"
+              name="inserts"
+            />
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              placeholder="Year"
+              [(ngModel)]="selectedSet.year"
+              name="year"
+            />
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              placeholder="Total"
+              [(ngModel)]="selectedSet.total"
+              name="total"
+            />
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <!-- COURSE ACTIONS -->
+          <button
+            type="submit"
+            [disabled]="form.invalid"
+            mat-button
+            color="primary"
+          >
+            Save
+          </button>
+          <button type="button" mat-button (click)="reset()">Cancel</button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+</div>
